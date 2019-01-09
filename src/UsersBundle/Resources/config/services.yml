@@ -3,7 +3,7 @@ services:
 #        class: UsersBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
 
-  app.user:
+  users.user:
       class: UsersBundle\Services\UserService
       arguments: ["@doctrine.orm.entity_manager"]
       public: true

@@ -5,6 +5,9 @@ namespace UsersBundle\Services;
 use Doctrine\ORM\EntityManager;
 use UsersBundle\Entity\Users;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 class UserService
 {
@@ -15,11 +18,14 @@ class UserService
         $this->em = $em;
     }
 
+
+
     public function getUsers()
     {
         return $this->em->getRepository('UsersBundle:Users')->findAll();
 
     }
+
 
     public function getUserWhitOutEmail()
     {
@@ -31,6 +37,7 @@ class UserService
         return $result;
     }
 
+
     public function insertUsers($newUser)
     {
             
@@ -41,8 +48,7 @@ class UserService
 
         $this->em->persist($user);
         $flush = $this->em->flush();
-        
-        $flush !== null ? $return = ['Status' => 'kO'] : $return = ['Status' => 'Ok'];
+        $user->getId() !== null ? $return = ['Status' => 'OK'] : $return = ['Status' => 'KO'];
         
         return $return;
     }
@@ -73,7 +79,6 @@ class UserService
         $flush =  $this->em->flush();
 
         $flush !== null ? $return = ['Status' => 'kO'] : $return = ['Status' => 'Ok'];
-        
         return $return;
     }
 

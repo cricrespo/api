@@ -6,6 +6,11 @@ get:
     path: getUsers
     defaults: { _controller: UsersBundle:Default:list }
 
+getId:
+    path: getUserId/{id}
+    defaults: { _controller: UsersBundle:Default:getUserId }
+    methods: GET
+
 email_not_nul: 
     path: emailNotNull
     defaults: {  _controller: UsersBundle:Default:listEamilNotNull }

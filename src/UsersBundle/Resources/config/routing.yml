@@ -2,20 +2,25 @@ pruebas_homepage:
     path:     /
     defaults: { _controller: UsersBundle:Default:index }
 
-list:
-    path: list
+get:
+    path: getUsers
     defaults: { _controller: UsersBundle:Default:list }
 
-list_email_not_nul: 
-    path: email-not-null
-    defaults: {  _controller: UsersBundle:Default:listEamilNotNUll }
+email_not_nul: 
+    path: emailNotNull
+    defaults: {  _controller: UsersBundle:Default:listEamilNotNull }
 
-newUser:
-    path: new-user
+new:
+    path: newUser
     defaults: { _controller: UsersBundle:Default:insertUser }
     methods: POST
 
-removeUserId:
+update:
+    path: updateUser
+    defaults: { _controller: UsersBundle:Default:updateUser }
+    methods: POST
+
+removeId:
     path: removeUserID/{id}
     defaults: { _controller: UsersBundle:Default:removeUserById }
     methods: GET

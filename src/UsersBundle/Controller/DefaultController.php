@@ -28,14 +28,14 @@ class DefaultController extends Controller
        return $this->getUsers();
     }
 
-    public function listEamilNotNUllAction()
+    public function listEamilNotNullAction()
     {
         return $this->getUserWhitOutEmail();
     }
 
     public function insertUserAction(Request $request)
     {
-        $userService = $this->get('pruebas.user');
+        $userService = $this->get('app.user');
         $user = new Users();
         $password = $this->get('security.password_encoder') 
         ->encodePassword($user, $request->request->get('password'));
@@ -48,9 +48,24 @@ class DefaultController extends Controller
         return $httpResponse;
     }
 
+    public function updateUserAction(Request $request)
+    {
+        $userService = $this->get('app.user');
+        $user = new Users();
+        $password = $this->get('security.password_encoder') 
+        ->encodePassword($user, $request->request->get('password'));
+        $request->request->set('encode', $password);
+
+        $result = $userService->updateUser($request->request);
+
+        $helpersService = $this->get("app.helpers");
+        $httpResponse = $helpersService->collectionToHttpJsonResponse($result);
+        return $httpResponse;
+    }
+
     public function removeUserByIdAction($id)
     {
-        $userService = $this->get('pruebas.user');
+        $userService = $this->get('app.user');
         $result = $userService->removeUserById($id);
 
         $helpersService = $this->get("app.helpers");
@@ -62,7 +77,7 @@ class DefaultController extends Controller
 
     private function getUsers()
     {
-        $userService = $this->get("pruebas.user");
+        $userService = $this->get("app.user");
         $users = $userService->getUsers();
 
 
@@ -76,7 +91,7 @@ class DefaultController extends Controller
     private function getUserWhitOutEmail()
     {
 
-        $userService = $this->get("pruebas.user");
+        $userService = $this->get("app.user");
         $users = $userService->getUserWhitOutEmail();
 
         $helpersService = $this->get("app.helpers");

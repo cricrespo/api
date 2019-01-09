@@ -47,10 +47,27 @@ class UserService
         return $return;
     }
 
+    public function updateUser($updateUser)
+    {
+        $userId  = $this->getUserId($updateUser->get('id'));
+        
+        $updateUser->get('username') ? $userId->setUsername($updateUser->get('username')) : '';
+        $updateUser->get('email') ? $userId->setEmail($updateUser->get('email')) : '';
+        $updateUser->get('encode') ? $userId->setPassword($updateUser->get('encode')) : '';
+        
+        $this->em->persist($userId);
+        $flush = $this->em->flush();
+        
+        $flush !== null ? $return = ['Status' => 'kO'] : $return = ['Status' => 'Ok'];
+        
+        return $return;
+    }
+    
+
     public function removeUserById($id)
     {
-        $repo = $this->em->getRepository('UsersBundle:Users');
-        $userId  = $repo->find($id);
+        
+        $userId  = $this->getUserId($id);
 
         $this->em->remove($userId);
         $flush =  $this->em->flush();
@@ -59,6 +76,15 @@ class UserService
         
         return $return;
     }
+
+    public function getUserId($id)
+    {
+        $repo = $this->em->getRepository('UsersBundle:Users');
+        $userId  = $repo->find($id);
+        return $userId;
+    }
+
+    
 }
 
 

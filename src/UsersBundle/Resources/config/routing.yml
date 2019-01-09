@@ -1,0 +1,21 @@
+pruebas_homepage:
+    path:     /
+    defaults: { _controller: UsersBundle:Default:index }
+
+list:
+    path: list
+    defaults: { _controller: UsersBundle:Default:list }
+
+list_email_not_nul: 
+    path: email-not-null
+    defaults: {  _controller: UsersBundle:Default:listEamilNotNUll }
+
+newUser:
+    path: new-user
+    defaults: { _controller: UsersBundle:Default:insertUser }
+    methods: POST
+
+removeUserId:
+    path: removeUserID/{id}
+    defaults: { _controller: UsersBundle:Default:removeUserById }
+    methods: GET

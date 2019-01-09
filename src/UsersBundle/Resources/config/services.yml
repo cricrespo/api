@@ -1,0 +1,11 @@
+services:
+#    pruebas.example:
+#        class: UsersBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+  pruebas.user:
+      class: UsersBundle\Services\UserService
+      arguments: ["@doctrine.orm.entity_manager"]
+      public: true
+  
+  

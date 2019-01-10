@@ -5,18 +5,17 @@ namespace UsersBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
-use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use UsersBundle\Entity\Users;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Swagger\Annotations as SWG;
+use Nelmio\ApiDocBundle\Annotation\Model;
 
 
 class DefaultController extends Controller
 {
-
-    const ATTR_PARAM_JSON = 'json';
-    const ATTR_PARAM_TEST = 'test';
 
     public function indexAction()
     {   

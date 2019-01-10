@@ -72,3 +72,10 @@ swiftmailer:
 sensio_framework_extra:
    router:
         annotations: false
+
+nelmio_api_doc:
+    areas:
+        path_patterns: # an array of regexps
+            - ^/api(?!/doc$)
+        host_patterns:
+            - ^api\.

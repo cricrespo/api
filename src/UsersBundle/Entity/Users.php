@@ -5,9 +5,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
- * Users
+ * Users.
+ *
+ * @ApiResource
+ * @ORM\Table(name="users")
+ * @ORM\Entity(repositoryClass="UsersBunndle\Repository\AnimalRepository")
  */
 class Users implements UserInterface
 {
